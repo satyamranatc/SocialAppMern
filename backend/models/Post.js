@@ -10,6 +10,10 @@ let PostSchema = new mongoose.Schema({
         required: true,
         maxLength: 100
     },
+    poster:{
+        type: String,
+        default: 'https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png'
+    },
     content: {
         type: String,
         required: true
