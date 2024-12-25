@@ -15,7 +15,10 @@ router.get('/',async(req,res)=>{
 
 
 router.post('/', async(req,res)=>{
-    const user = new User(req.body);
+    console.log("Hi Post")
+    let {FullName,username,password,avtar} = req.body;
+
+    const user = new User({FullName,username,password,avtar});
 
     try {
         const newUser = await user.save();
@@ -23,6 +26,26 @@ router.post('/', async(req,res)=>{
     } catch (error) {
         res.status(400).json({message: error.message});
     }
+});
+
+
+router.post('/signin', async(req,res)=>{
+    let {username,password} = req.body;
+
+    const user = await User.findOne({username});
+    if(!user){
+        return res.status(401).json({message: 'Invalid username'});
+    }
+    const isMatch =  user.password == password;
+    if(!isMatch){
+        return res.status(401).json({message: 'Invalid password'});
+    }
+    res.json({
+        message: 'Logged in successfully',
+        user: user
+    });
+
+   
 });
 
 // Export:
