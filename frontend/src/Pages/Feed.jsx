@@ -6,6 +6,15 @@ export default function Feed() {
   let [PostData, setPostData] = useState([]);
   let [FormDisplay, setFormDisplay] = useState(false);
   let [Res, setRes] = useState({});
+  let [UserData, setUserData] = useState({})
+
+
+    useEffect(()=>{
+      let User = JSON.parse(localStorage.getItem("User"));
+      if(User) {
+        setUserData(User);
+      }
+    },[])
 
   useEffect(() => {
     axios.get("http://localhost:5500/api/post")
@@ -20,7 +29,7 @@ export default function Feed() {
   function SendData(e) {
     e.preventDefault();
     let PostData = {
-      userId: "676a74eb22e5d041adabb5e4",
+      userId: UserData._id,
       title: e.target[0].value,
       poster: e.target[1].value,
       content: e.target[2].value
@@ -116,6 +125,7 @@ export default function Feed() {
           <div key={i} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">{P.title}</h2>
+              <p className="text-xl font-semibold text-gray-800 mb-4">{P.userId}</p>
             </div>
             {P.poster && (
               <div className="w-full aspect-video relative overflow-hidden bg-gray-100">

@@ -6,7 +6,7 @@ export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="sticky top-0 z-10 bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
