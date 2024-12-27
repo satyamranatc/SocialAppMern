@@ -125,7 +125,7 @@ export default function Feed() {
           <div key={i} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">{P.title}</h2>
-              <p className="text-xl font-semibold text-gray-800 mb-4">{P.userId}</p>
+              <p className="text-sm  text-gray-500 mb-4">@ {P.userId.FullName}</p>
             </div>
             {P.poster && (
               <div className="w-full aspect-video relative overflow-hidden bg-gray-100">
